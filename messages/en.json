@@ -1,0 +1,76 @@
+{
+  "common": {
+    "home": "Home",
+    "products": "Products",
+    "courses": "Courses",
+    "about": "About",
+    "contact": "Contact",
+    "admin": "Admin",
+    "login": "Login",
+    "logout": "Logout",
+    "language": "Language",
+    "english": "English",
+    "arabic": "Arabic",
+    "price": "Price",
+    "addToCart": "Add to Cart",
+    "viewDetails": "View Details",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "add": "Add",
+    "search": "Search",
+    "loading": "Loading...",
+    "noItems": "No items found"
+  },
+  "home": {
+    "title": "Welcome to Dr. Raneem's Cosmetics & Skin Care",
+    "subtitle": "Premium beauty products and expert skin care courses",
+    "heroDescription": "Discover our curated collection of cosmetics and professional skin care courses designed to enhance your beauty routine.",
+    "featuredProducts": "Featured Products",
+    "featuredCourses": "Featured Courses",
+    "viewAll": "View All"
+  },
+  "products": {
+    "title": "Our Products",
+    "description": "Explore our premium cosmetics collection",
+    "category": "Category",
+    "inStock": "In Stock",
+    "outOfStock": "Out of Stock"
+  },
+  "courses": {
+    "title": "Our Courses",
+    "description": "Learn professional skin care techniques",
+    "duration": "Duration",
+    "enroll": "Enroll Now",
+    "lessons": "Lessons"
+  },
+  "admin": {
+    "title": "Admin Dashboard",
+    "dashboard": "Dashboard",
+    "manageProducts": "Manage Products",
+    "manageCourses": "Manage Courses",
+    "addProduct": "Add Product",
+    "addCourse": "Add Course",
+    "editProduct": "Edit Product",
+    "editCourse": "Edit Course",
+    "name": "Name",
+    "nameEn": "Name (English)",
+    "nameAr": "Name (Arabic)",
+    "description": "Description",
+    "descriptionEn": "Description (English)",
+    "descriptionAr": "Description (Arabic)",
+    "image": "Image URL",
+    "category": "Category",
+    "price": "Price",
+    "duration": "Duration",
+    "lessons": "Number of Lessons",
+    "email": "Email",
+    "password": "Password",
+    "loginTitle": "Admin Login",
+    "invalidCredentials": "Invalid email or password",
+    "loggedIn": "Successfully logged in",
+    "loggedOut": "Successfully logged out"
+  }
+}
+
