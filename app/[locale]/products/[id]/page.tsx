@@ -4,6 +4,7 @@ import connectDB from '@/lib/mongodb';
 import Product from '@/models/Product';
 import Image from 'next/image';
 import { Locale } from '@/i18n';
+import { formatCurrency } from '@/lib/format';
 
 export default async function ProductDetailPage({
   params,
@@ -40,12 +41,9 @@ export default async function ProductDetailPage({
 
         <div className="space-y-6">
           <div>
-            <p className="text-primary-600 font-semibold mb-2">
-              {tProducts('category')}: {product.category}
-            </p>
             <h1 className="text-4xl font-bold text-gray-800 mb-4">{name}</h1>
             <p className="text-3xl font-bold text-primary-600 mb-6">
-              ${product.price}
+              {formatCurrency(product.price, locale)}
             </p>
           </div>
 

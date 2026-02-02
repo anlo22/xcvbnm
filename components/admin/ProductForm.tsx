@@ -14,8 +14,10 @@ const productSchema = z.object({
   descriptionEn: z.string().min(1, 'English description is required'),
   descriptionAr: z.string().min(1, 'Arabic description is required'),
   price: z.number().min(0, 'Price must be positive'),
-  image: z.string().url('Valid image URL is required'),
-  category: z.string().min(1, 'Category is required'),
+  image: z
+    .string()
+    .min(1, 'Image is required')
+    .refine((value) => value.startsWith('data:image/'), 'Please upload an image file'),
   inStock: z.boolean(),
 });
 
@@ -32,12 +34,14 @@ export default function ProductForm({ product, locale }: ProductFormProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [imagePreview, setImagePreview] = useState<string>(product?.image || '');
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     setValue,
+    clearErrors,
   } = useForm<ProductFormData>({
     resolver: zodResolver(productSchema),
     defaultValues: product
@@ -48,13 +52,28 @@ export default function ProductForm({ product, locale }: ProductFormProps) {
           descriptionAr: product.descriptionAr,
           price: product.price,
           image: product.image,
-          category: product.category,
           inStock: product.inStock,
         }
       : {
           inStock: true,
         },
   });
+
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) {
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const result = reader.result as string;
+      setValue('image', result, { shouldValidate: true });
+      setImagePreview(result);
+      clearErrors('image');
+    };
+    reader.readAsDataURL(file);
+  };
 
   const onSubmit = async (data: ProductFormData) => {
     setLoading(true);
@@ -164,27 +183,26 @@ export default function ProductForm({ product, locale }: ProductFormProps) {
           )}
         </div>
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            {t('category')}
-          </label>
-          <input
-            {...register('category')}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-          />
-          {errors.category && (
-            <p className="text-red-500 text-sm mt-1">{errors.category.message}</p>
-          )}
-        </div>
-
         <div className="md:col-span-2">
           <label className="block text-sm font-medium text-gray-700 mb-2">
             {t('image')}
           </label>
+          <input type="hidden" {...register('image')} />
           <input
-            {...register('image')}
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           />
+          {imagePreview && (
+            <div className="mt-3">
+              <img
+                src={imagePreview}
+                alt="Preview"
+                className="h-40 w-auto rounded-lg border border-gray-200 object-cover"
+              />
+            </div>
+          )}
           {errors.image && (
             <p className="text-red-500 text-sm mt-1">{errors.image.message}</p>
           )}
@@ -206,7 +224,7 @@ export default function ProductForm({ product, locale }: ProductFormProps) {
         <button
           type="submit"
           disabled={loading}
-          className="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-colors disabled:opacity-50"
+          className="inline-flex items-center justify-center rounded-lg bg-primary-600 px-6 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {loading ? tCommon('loading') : tCommon('save')}
         </button>

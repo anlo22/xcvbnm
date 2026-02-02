@@ -108,7 +108,6 @@ node scripts/createAdmin.js your_email@example.com your_password
   "descriptionAr": "كريم مضاد للشيخوخة فاخر بمكونات طبيعية",
   "price": 49.99,
   "image": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571",
-  "category": "Skincare",
   "inStock": true
 }
 ```

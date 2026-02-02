@@ -26,8 +26,11 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <body className="min-h-screen bg-gradient-to-b from-primary-50 to-white">
+    <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'} suppressHydrationWarning>
+      <body
+        className="min-h-screen bg-gradient-to-b from-primary-50 to-white"
+        suppressHydrationWarning
+      >
         <Providers>
           <NextIntlClientProvider messages={messages}>
             <ConditionalLayout>{children}</ConditionalLayout>

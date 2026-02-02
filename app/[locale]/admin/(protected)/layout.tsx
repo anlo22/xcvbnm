@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation';
 import { getSession } from '@/lib/auth';
 import { Locale } from '@/i18n';
+import AdminLogoutButton from '@/components/admin/AdminLogoutButton';
 
 export default async function AdminProtectedLayout({
   children,
@@ -16,6 +17,13 @@ export default async function AdminProtectedLayout({
     redirect(`/${locale}/admin/login`);
   }
 
-  return <>{children}</>;
+  return (
+    <div className="space-y-6">
+      <div className="flex justify-end">
+        <AdminLogoutButton locale={locale} />
+      </div>
+      {children}
+    </div>
+  );
 }
 

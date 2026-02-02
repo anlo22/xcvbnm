@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Locale } from '@/i18n';
+import { formatCurrency, formatCycleSummaryShort } from '@/lib/format';
 
 interface AdminCourseListProps {
   courses: any[];
@@ -71,18 +72,22 @@ export default function AdminCourseList({ courses, locale }: AdminCourseListProp
                 </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-500">{course.duration}</div>
+                <div className="text-sm text-gray-500">
+                  {formatCycleSummaryShort(course.cycleDays, locale, course.duration)}
+                </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <div className="text-sm text-gray-500">{course.lessons}</div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">${course.price}</div>
+                <div className="text-sm text-gray-900">
+                  {formatCurrency(course.price, locale)}
+                </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <Link
                   href={`/${locale}/admin/courses/${course._id}`}
-                  className="text-primary-600 hover:text-primary-900 mr-4"
+                  className="inline-flex items-center gap-2 rounded-md bg-primary-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 mr-3"
                 >
                   {t('edit')}
                 </Link>

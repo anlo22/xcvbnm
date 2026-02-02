@@ -7,7 +7,6 @@ export interface IProduct extends Document {
   descriptionAr: string;
   price: number;
   image: string;
-  category: string;
   inStock: boolean;
   createdAt: Date;
   updatedAt: Date;
@@ -40,12 +39,7 @@ const ProductSchema: Schema = new Schema(
     },
     image: {
       type: String,
-      required: [true, 'Image URL is required'],
-    },
-    category: {
-      type: String,
-      required: [true, 'Category is required'],
-      trim: true,
+      required: [true, 'Image is required'],
     },
     inStock: {
       type: Boolean,
@@ -57,8 +51,14 @@ const ProductSchema: Schema = new Schema(
   }
 );
 
+const modelName = 'Product';
+
+if (mongoose.models[modelName]?.schema?.path('category')) {
+  delete mongoose.models[modelName];
+}
+
 const Product: Model<IProduct> =
-  mongoose.models.Product || mongoose.model<IProduct>('Product', ProductSchema);
+  mongoose.models[modelName] || mongoose.model<IProduct>(modelName, ProductSchema);
 
 export default Product;
 

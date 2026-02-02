@@ -8,6 +8,7 @@ export interface ICourse extends Document {
   price: number;
   image: string;
   duration: string;
+  cycleDays: string[];
   lessons: number;
   createdAt: Date;
   updatedAt: Date;
@@ -40,12 +41,16 @@ const CourseSchema: Schema = new Schema(
     },
     image: {
       type: String,
-      required: [true, 'Image URL is required'],
+      required: [true, 'Image is required'],
     },
     duration: {
       type: String,
       required: [true, 'Duration is required'],
       trim: true,
+    },
+    cycleDays: {
+      type: [String],
+      default: [],
     },
     lessons: {
       type: Number,

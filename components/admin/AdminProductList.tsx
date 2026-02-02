@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Locale } from '@/i18n';
+import { formatCurrency } from '@/lib/format';
 
 interface AdminProductListProps {
   products: any[];
@@ -49,9 +50,6 @@ export default function AdminProductList({ products, locale }: AdminProductListP
               {tAdmin('name')}
             </th>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              {tAdmin('category')}
-            </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               {tAdmin('price')}
             </th>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -71,10 +69,9 @@ export default function AdminProductList({ products, locale }: AdminProductListP
                 </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-500">{product.category}</div>
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">${product.price}</div>
+                <div className="text-sm text-gray-900">
+                  {formatCurrency(product.price, locale)}
+                </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <span
@@ -90,7 +87,7 @@ export default function AdminProductList({ products, locale }: AdminProductListP
               <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <Link
                   href={`/${locale}/admin/products/${product._id}`}
-                  className="text-primary-600 hover:text-primary-900 mr-4"
+                  className="inline-flex items-center gap-2 rounded-md bg-primary-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 mr-3"
                 >
                   {t('edit')}
                 </Link>

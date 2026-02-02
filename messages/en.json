@@ -21,20 +21,30 @@
     "add": "Add",
     "search": "Search",
     "loading": "Loading...",
-    "noItems": "No items found"
+    "noItems": "No items found",
+    "backToPrevious": "Back",
+    "cycleDetails": "Cycle Details",
+    "cycleDay": "Day",
+    "addCycleDay": "Add Cycle Day",
+    "remove": "Remove",
+    "noCycleDays": "No cycle days selected.",
+    "footerDescription": "Premium cosmetics and professional skin care courses designed to enhance your beauty routine.",
+    "footerCopyright": "© 2026 Dr. Raneem. All rights reserved."
   },
   "home": {
     "title": "Welcome to Dr. Raneem's Cosmetics & Skin Care",
     "subtitle": "Premium beauty products and expert skin care courses",
     "heroDescription": "Discover our curated collection of cosmetics and professional skin care courses designed to enhance your beauty routine.",
     "featuredProducts": "Featured Products",
+    "featuredProductsSubtitle": "Curated skincare picks for glowing results ✨",
     "featuredCourses": "Featured Courses",
+    "featuredCoursesSubtitle": "Learn routines, techniques, and expert tips 💫",
+    "skinCareLabel": "Skin Care",
     "viewAll": "View All"
   },
   "products": {
     "title": "Our Products",
     "description": "Explore our premium cosmetics collection",
-    "category": "Category",
     "inStock": "In Stock",
     "outOfStock": "Out of Stock"
   },
@@ -60,8 +70,7 @@
     "description": "Description",
     "descriptionEn": "Description (English)",
     "descriptionAr": "Description (Arabic)",
-    "image": "Image URL",
-    "category": "Category",
+    "image": "Image",
     "price": "Price",
     "duration": "Duration",
     "lessons": "Number of Lessons",

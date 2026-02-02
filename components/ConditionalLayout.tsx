@@ -11,6 +11,7 @@ export default function ConditionalLayout({
 }) {
   const pathname = usePathname();
   const isLoginPage = pathname?.includes('/admin/login');
+  const isAdminPage = pathname?.includes('/admin');
 
   return (
     <>
@@ -18,7 +19,7 @@ export default function ConditionalLayout({
       <main className={isLoginPage ? 'min-h-screen' : 'container mx-auto px-4 py-8'}>
         {children}
       </main>
-      {!isLoginPage && <Footer />}
+      {!isAdminPage && <Footer />}
     </>
   );
 }
