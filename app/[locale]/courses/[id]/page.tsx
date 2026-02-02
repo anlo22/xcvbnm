@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import connectDB from '@/lib/mongodb';
 import Course from '@/models/Course';
@@ -18,6 +18,7 @@ export default async function CourseDetailPage({
   params: Promise<{ locale: Locale; id: string }>;
 }) {
   const { locale, id } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations('common');
   const tCourses = await getTranslations('courses');
 

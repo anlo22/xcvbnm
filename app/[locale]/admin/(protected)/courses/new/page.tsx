@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 import CourseForm from '@/components/admin/CourseForm';
 import { Locale } from '@/i18n';
@@ -6,9 +6,10 @@ import { Locale } from '@/i18n';
 export default async function NewCoursePage({
   params,
 }: {
-  params: { locale: Locale };
+  params: Promise<{ locale: Locale }>;
 }) {
-  const { locale } = params;
+  const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations('admin');
   const tCommon = await getTranslations('common');
 

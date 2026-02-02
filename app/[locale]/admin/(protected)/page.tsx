@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { redirect } from 'next/navigation';
 import { getSession } from '@/lib/auth';
 import connectDB from '@/lib/mongodb';
@@ -10,9 +10,10 @@ import { Locale } from '@/i18n';
 export default async function AdminDashboard({
   params,
 }: {
-  params: { locale: Locale };
+  params: Promise<{ locale: Locale }>;
 }) {
-  const { locale } = params;
+  const { locale } = await params;
+  setRequestLocale(locale);
   const session = await getSession();
 
   if (!session) {
