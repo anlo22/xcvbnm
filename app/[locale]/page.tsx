@@ -7,6 +7,8 @@ import ProductCard from '@/components/ProductCard';
 import CourseCard from '@/components/CourseCard';
 import { Locale } from '@/i18n';
 
+export const dynamic = 'force-dynamic';
+
 export default async function HomePage({
   params,
 }: {

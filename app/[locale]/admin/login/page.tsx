@@ -6,6 +6,8 @@ import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useLocale } from 'next-intl';
 
+export const dynamic = 'force-dynamic';
+
 export default function AdminLoginPage() {
   const t = useTranslations('admin');
   const tCommon = useTranslations('common');

@@ -12,6 +12,8 @@ import {
   normalizeCycleDays,
 } from '@/lib/format';
 
+export const dynamic = 'force-dynamic';
+
 export default async function CourseDetailPage({
   params,
 }: {

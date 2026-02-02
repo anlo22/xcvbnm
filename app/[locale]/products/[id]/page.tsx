@@ -6,6 +6,8 @@ import Image from 'next/image';
 import { Locale } from '@/i18n';
 import { formatCurrency } from '@/lib/format';
 
+export const dynamic = 'force-dynamic';
+
 export default async function ProductDetailPage({
   params,
 }: {

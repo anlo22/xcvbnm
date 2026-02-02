@@ -4,6 +4,8 @@ import Product from '@/models/Product';
 import ProductCard from '@/components/ProductCard';
 import { Locale } from '@/i18n';
 
+export const dynamic = 'force-dynamic';
+
 export default async function ProductsPage({
   params,
 }: {
