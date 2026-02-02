@@ -15,8 +15,15 @@ export default async function ProductsPage({
   setRequestLocale(locale);
   const t = await getTranslations('products');
 
-  await connectDB();
-  const products = await Product.find().sort({ createdAt: -1 }).lean();
+  let products: any[] = [];
+
+  try {
+    await connectDB();
+    products = await Product.find().sort({ createdAt: -1 }).lean();
+  } catch (error) {
+    console.error('Database connection error:', error);
+    // Continue with empty array if database is unavailable
+  }
 
   return (
     <div className="space-y-12">

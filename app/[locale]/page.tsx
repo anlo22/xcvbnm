@@ -18,15 +18,23 @@ export default async function HomePage({
   setRequestLocale(locale);
   const t = await getTranslations('home');
 
-  await connectDB();
-  const products = await Product.find({ inStock: true })
-    .sort({ createdAt: -1 })
-    .limit(6)
-    .lean();
-  const courses = await Course.find()
-    .sort({ createdAt: -1 })
-    .limit(6)
-    .lean();
+  let products: any[] = [];
+  let courses: any[] = [];
+
+  try {
+    await connectDB();
+    products = await Product.find({ inStock: true })
+      .sort({ createdAt: -1 })
+      .limit(6)
+      .lean();
+    courses = await Course.find()
+      .sort({ createdAt: -1 })
+      .limit(6)
+      .lean();
+  } catch (error) {
+    console.error('Database connection error:', error);
+    // Continue with empty arrays if database is unavailable
+  }
 
   return (
     <div className="space-y-16 sm:space-y-20">

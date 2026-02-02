@@ -15,8 +15,15 @@ export default async function CoursesPage({
   setRequestLocale(locale);
   const t = await getTranslations('courses');
 
-  await connectDB();
-  const courses = await Course.find().sort({ createdAt: -1 }).lean();
+  let courses: any[] = [];
+
+  try {
+    await connectDB();
+    courses = await Course.find().sort({ createdAt: -1 }).lean();
+  } catch (error) {
+    console.error('Database connection error:', error);
+    // Continue with empty array if database is unavailable
+  }
 
   return (
     <div className="space-y-12">
